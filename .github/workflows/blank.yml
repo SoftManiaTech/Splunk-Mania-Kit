@@ -24,6 +24,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -34,3 +35,22 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: Splunk AppInspect
+        # You may pin to the exact commit or the version.
+        # uses: splunk/appinspect-cli-action@dacca30e966be19e99cb1886ea59cd757d605b0d
+        uses: splunk/appinspect-cli-action@v1.4.7-publish
+        with:
+          # path to the application directory to be inspected
+          app_path: / # optional, default is build/splunkbase
+          # json result file name
+          result_file: result.txt # optional, default is appinspect_result.json
+      - name: upload-manual-check-markodown
+        uses: actions/upload-artifact@v2
+        with:
+          name: manual_check_markdown.txt
+          path: manual_check_markdown.txt
+      - name: upload-expected_failure-markodown
+        uses: actions/upload-artifact@v2
+        with:
+          name: expected_failure_markdown.txt
+          path: expected_failure_markdown.txt
