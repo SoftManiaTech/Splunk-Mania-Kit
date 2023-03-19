@@ -1,0 +1,139 @@
+<form version="1.1" theme="light" script="js/search-bar-view.js">
+  <label>Search Commands Lab</label>
+  <fieldset submitButton="false"></fieldset>
+  <row>
+    <panel id="command_list_input">
+      <input type="link" token="command_token" searchWhenChanged="true">
+        <label></label>
+        <fieldForLabel>command</fieldForLabel>
+        <fieldForValue>command</fieldForValue>
+        <selectFirstChoice>true</selectFirstChoice>
+        <search>
+          <query>| inputlookup search_commands_lab.csv | stats count by command</query>
+        </search>
+      </input>
+    </panel>
+  </row>
+  <row>
+    <panel depends="$hidden$">
+      <table>
+        <search>
+          <query>| inputlookup search_commands_lab.csv | search command="$command_token$"</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+          <done>
+            <set token="splunk_query_1">$result.query_before_command$</set>
+            <set token="splunk_query_2">$result.query_after_command$</set>
+            <set token="splunk_query_command">$result.command$</set>
+            <set token="splunk_query_command_description">$result.description$</set>
+            <set token="splunk_query_command_image_url">$result.image_url$</set>
+            <set token="splunk_query_command_syntax">$result.syntax$</set>
+          </done>
+        </search>
+        <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <!--  </panel>-->
+      <!--</row>-->
+      <!--<row>-->
+      <!--  <panel>-->
+      <html id="command_explanation">
+        <div class="command_description_box">
+          <p id="command_title">$splunk_query_command$</p>
+          <p id="command_description">$splunk_query_command_description$</p>
+          <p id="command_syntax">$splunk_query_command_syntax$</p>
+        </div>
+        <div class="command_image_box">
+          <img src="$splunk_query_command_image_url$" alt="$splunk_query_command$ command explanation image" width="500" height="600"/>
+        </div>
+      </html>
+      <html>
+        <style>
+          .search_bar_container {
+              display: flex;
+              justify-content: space-evenly;
+          }
+          
+          .search_bar_box {
+              width: -webkit-fill-available;
+              margin: 1%;
+          }
+          
+          p.search_bar_container_title {
+              font-size: x-large;
+              font-weight: bold;
+          }
+          
+          p.search_bar_container_title.before {
+              color: red;
+          }
+          
+          p.search_bar_container_title.after {
+              color: green;
+          }
+          div#input1 {
+              width: -webkit-fill-available;
+          }
+          #input1 button {
+              box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+              margin-left: 1%;
+              width: 9%;
+              height: 5vh;
+              background: white;    
+          }
+
+          #input button span {
+              width: 100%;
+          }
+          
+          p#command_title {
+              font-size: 1.5rem;
+              font-weight: bold;
+          }
+          
+          p#command_description {
+              font-size: 1rem;
+          }
+          
+          .command_description_box {
+              width: 50%;
+          }
+          
+          .command_image_box {
+              width: 50%;
+          }
+          
+          #command_explanation .panel-body{
+              display: flex;
+              justify-content: center;
+              padding: 2%;
+          }
+          
+          #command_list_input .dashboard-panel {
+              background: transparent;
+          }
+
+        </style>
+      </html>
+      <html>
+        <div class="search_bar_container">
+          
+          <div id="search_bar_box_1" class="search_bar_box">
+            <p class="search_bar_container_title before">Before the command</p>
+              <div id="mysearchbar1"/>
+              <div id="mysearchcontrols1"/>
+              <div id="mytable1"/>
+          </div>  
+          <div id="search_bar_box_2" class="search_bar_box">
+              <p class="search_bar_container_title after">After the command</p>
+              <div id="mysearchbar2"/>
+              <div id="mysearchcontrols2"/>
+              <div id="mytable2"/>
+          </div>
+        </div>
+      </html>
+    </panel>
+  </row>
+</form>
