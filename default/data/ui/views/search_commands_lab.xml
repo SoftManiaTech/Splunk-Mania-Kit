@@ -46,7 +46,7 @@
           <p id="command_syntax">$splunk_query_command_syntax$</p>
         </div>
         <div class="command_image_box">
-          <img src="$splunk_query_command_image_url$" alt="$splunk_query_command$ command explanation image" width="500" height="600"/>
+          <img src="$splunk_query_command_image_url$" alt="$splunk_query_command$ command explanation image" width="1000" height="900"/>
         </div>
       </html>
       <html>
@@ -98,23 +98,25 @@
           }
           
           .command_description_box {
-              width: 50%;
+              width: -webkit-fill-available;
           }
           
           .command_image_box {
-              width: 50%;
+              width: -webkit-fill-available;
+              display: contents;
           }
           
-          #command_explanation .panel-body{
+          #command_explanation .panel-body {
               display: flex;
+              flex-direction: column;
               justify-content: center;
+              align-items: center;
               padding: 2%;
           }
           
           #command_list_input .dashboard-panel {
               background: transparent;
           }
-
         </style>
       </html>
       <html>
