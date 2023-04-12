@@ -1,0 +1,96 @@
+<dashboard version="1.1" hideChrome="true" hideEdit="true">
+  <label>SplunkMania Kit - Home</label>
+  <row>
+    <panel>
+      <html>
+        <style>
+          .dashboards_list {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 50vh;
+          }
+          
+          .dashboard_name {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 20vh;
+              width: 20%;
+              box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+              margin: 2%;
+              background: white;
+              border-radius: 10px;
+          }
+          
+          a {
+              height: -webkit-fill-available;
+              width: -webkit-fill-available;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: black;
+          }
+          
+          a:hover {
+              text-decoration:none
+          }
+          
+          .dashboard_name:hover {
+              scale: 1.05;
+          }
+          
+          a {
+          text-align: center;
+          font-weight: bolder !important;
+          padding: 10%;
+          font-size: 1.25rem;
+          }
+          
+          .dashboard_name.upcoming {
+              opacity: 0.5;
+              pointer-events: none;
+              background: #d3d3d38c;
+          }
+          
+          .dashboard-panel {
+              background: transparent !important;
+          }
+          
+          .dashboard-header {
+              text-align: center;
+              margin-top: 5%;
+          }
+          
+          .splunkmania_logo {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 15vh;
+          }
+          
+          .splunkmania_logo img {
+              zoom: 0.5;
+          }
+        </style>
+      <div class="dashboards_list">
+        <div class="dashboard_name">
+          <a href="/app/Splunk-Mania-Kit/search_commands_lab" target="_blank">Search Commands Lab</a>
+        </div>
+        <div class="dashboard_name upcoming">
+          <a href="#">Splunk Enterprise Admin Usecases (coming soon)</a>
+        </div>
+        <div class="dashboard_name upcoming">
+          <a href="#" >Splunk Enterprise Troubleshooting Usecases (coming soon)</a>
+          </div>
+        <div class="dashboard_name upcoming">
+          <a href="#">Splunk Enterprise Developer Usecases (coming soon)</a>
+          </div>
+      </div>
+      <div class="splunkmania_logo">
+        <img src="/static/app/Splunk-Mania-Kit/images/SplunkMania-Logo.png"></img>
+      </div>
+    </html>
+    </panel>
+  </row>
+</dashboard>

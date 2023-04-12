@@ -59,4 +59,7 @@ owner = admin
 version = 9.0.1
 modtime = 1679199951.514706600
 
-
+[views/splunkmaniahome]
+owner = admin
+version = 9.0.1
+modtime = 1681286261.111531600
